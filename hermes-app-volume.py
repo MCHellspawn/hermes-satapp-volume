@@ -17,6 +17,7 @@ _LOGGER = logging.getLogger(_APPNAME)
 app = HermesApp(_APPNAME)
 skill = None
 
+# currently not used, replaced by setup_skill method in skill class
 async def setup_skill():
     global _LOGGER
     

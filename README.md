@@ -15,15 +15,17 @@ git clone https://github.com/MCHellspawn/hermes-satapp-volume
 
 Edit the config file config/config.ini
 1. In the Alsa Setup section set the device name to control (I want to pull this from the Rhasspy config in the future)
-2. In the Rhasspy section set the hostname/ip of you base device (This is the device where the intent recognition is configured, this is used for auto installing a sentences file)
+2. In the Rhasspy section set the hostname/ip and port of you base device (This is the device where the intent recognition is configured, this is used for auto installing a sentences file)
+3. In the Rhasspy section set the setellite id of device the skill is being run on (This is used for generating intent names)
 
 ```bash
+cd hermes-satapp-volume
 chmod +x ./setup-service-volume.sh
-sudo ./setuo-service-volume.sh
+sudo ./setup-service-volume.sh
 ```
 
 ### In Rhasspy:
-Create a new sentence file and copy the sentences from the sentences.ini into the new file in Rhasspy and save. Retrain Rhasspy.
+ a new sentence file and copy the sentences from the sentences.ini into the new file in Rhasspy and save. Retrain Rhasspy.
 
 Setup the slot program:
 1. SSH into the Rhasspy device 
