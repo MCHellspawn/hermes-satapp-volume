@@ -1,19 +1,25 @@
-# Rhasspy Time Skill (Rhasspy_App_Time)
+# Rhasspy Volume Satelitte Skill (Rhasspy_SatApp_Volume)
 
-A skill for [Rhasspy](https://github.com/rhasspy) that provides various time related intents including the current time, the time in another timezone, and the time difference between the current timezone and another. This skill is implemented as a Hermes app and uses the [Rhasspy-hermes-app](https://github.com/rhasspy/rhasspy-hermes-app) library. The script can be run as a service, or as a docker container (recommended). 
+A skill for [Rhasspy](https://github.com/rhasspy) satelittes that provides various audio volume control related intents including increasing the volume, decreasing the volume, and setting the volume to a specific value. This skill is implemented as a Hermes app and uses the [Rhasspy-hermes-app](https://github.com/rhasspy/rhasspy-hermes-app) library. The script is intended to be run as a service. 
 
 ## Installing
 
 Requires:
 * rhasspy-hermes-app 1.1.2
-* pytz 2022.7
-* backports.zoneinfo 0.2.1
 
-### In Docker:
+### In Rhasspy Satellite O/S:
 To install, clone the repository and execute docker build to build the image.
+```bash
+git clone https://github.com/MCHellspawn/hermes-satapp-volume
+```
+
+Edit the config file config/config.ini
+1. In the Alsa Setup section set the device name to control (I want to pull this from the Rhasspy config in the future)
+2. In the Rhasspy section set the hostname/ip of you base device (This is the device where the intent recognition is configured, this is used for auto installing a sentences file)
 
 ```bash
-sudo docker build hermes-app-time -t <image_name>
+chmod +x ./setup-service-volume.sh
+sudo ./setuo-service-volume.sh
 ```
 
 ### In Rhasspy:
