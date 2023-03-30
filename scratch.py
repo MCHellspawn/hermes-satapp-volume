@@ -46,13 +46,16 @@ elif platform == "win32":
         print("Error loading module: Windows modules\n")
 
     devices = AudioUtilities.GetSpeakers()
-    interface = devices.Activate(
-    IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    interface = devices.Activate(IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
     volume = cast(interface, POINTER(IAudioEndpointVolume))
-    print(volume.GetMasterVolumeLevel())
-    print(volume.GetMute())
-    volume.SetMute(False, None)
-    volume.SetMasterVolumeLevel(-37, None) #-0.0 = 100%, -9.3 = 50%, -37 = 0%
+    vol_range = volume.GetVolumeRange()
+    rawvol = volume.GetMasterVolumeLevel()
+    print(rawvol)
+    vol = int(round((rawvol - (vol_range[0])) / (vol_range[1] - (vol_range[0])) * 100, 0))
+    print(vol)
+    #print(volume.GetMute())
+    #volume.SetMute(False, None)
+    #volume.SetMasterVolumeLevel(-37, None) #-0.0 = 100%, -9.3 = 50%, -37 = 0%
 
 
 

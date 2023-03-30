@@ -4,6 +4,7 @@
 SCRIPT=$(readlink -f "$0")
 # Absolute path this script is in, thus /home/user/bin
 SCRIPTPATH=$(dirname "$SCRIPT")
+USER=$(who)
 echo $SCRIPTPATH
 
 # Create the app path and move the files
@@ -35,7 +36,8 @@ After=multi-user.target
 
 [Service]
 Type=simple
-ExecStart=/bin/sh -c 'cd /usr/lib/rhasspy-skills/satapp-volume && source satapp-volume/bin/activate && python3 hermes-app-volume.py'
+User=$USER
+ExecStart=/bin/bash -c 'cd /usr/lib/rhasspy-skills/satapp-volume && source satapp-volume/bin/activate && python3 hermes-app-volume.py'
 Restart=on-abort
 
 [Install]
