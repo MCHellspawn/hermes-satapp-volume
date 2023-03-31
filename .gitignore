@@ -1,5 +1,6 @@
 .vscode
 rhasspy-satapp-volume
+config/config-local.ini
 skill_old.py
 scratch.py
 hermes-app-volume_old.py

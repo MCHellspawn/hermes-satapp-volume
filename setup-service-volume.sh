@@ -5,6 +5,10 @@ SCRIPT=$(readlink -f "$0")
 # Absolute path this script is in, thus /home/user/bin
 SCRIPTPATH=$(dirname "$SCRIPT")
 USER=$(who)
+read -p "Enter MQTT Hostname: " MQTT_HOST
+read -p "Enter MQTT Port:" -i "1833" MQTT_PORT
+read -p "Enter MQTT User:" MQTT_USER
+read -p "Enter MQTT Password:" MQTT_PASS
 echo $SCRIPTPATH
 
 # Create the app path and move the files
@@ -37,7 +41,7 @@ After=multi-user.target
 [Service]
 Type=simple
 User=$USER
-ExecStart=/bin/bash -c 'cd /usr/lib/rhasspy-skills/satapp-volume && source satapp-volume/bin/activate && python3 hermes-app-volume.py'
+ExecStart=/bin/bash -c 'cd /usr/lib/rhasspy-skills/satapp-volume && source satapp-volume/bin/activate && python3 hermes-app-volume.py --host "$MQTT_HOST" --username "$MQTT_USER" --password "$MQTT_PASS" --port "$MQTT_PORT"'
 Restart=on-abort
 
 [Install]
